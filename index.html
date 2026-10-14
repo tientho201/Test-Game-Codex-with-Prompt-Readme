@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>Cloud Dash — Đường đua trên mây</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<canvas id="world" aria-label="Đường đua 3D trên mây"></canvas>
+<div class="vignette"></div>
+<header><a class="brand" href="./index.html"><span class="brand-icon">✦</span> CLOUD<span>DASH</span><small>PLAY ABOVE THE ORDINARY</small></a><div class="top-actions"><span class="live"><i></i> SOLO + 11 BOT</span><button id="sound" title="Bật hoặc tắt âm thanh" aria-label="Bật âm thanh">♪</button><button id="pause" title="Tạm dừng (Esc)" aria-label="Tạm dừng">Ⅱ</button></div></header>
+<main id="lobby">
+<div class="eyebrow"><span>01</span> <strong id="map-eyebrow">SKYLINE CIRCUIT</strong> <b>•</b> ĐƯỜNG ĐUA 3D</div>
+<h1>CHẠY HẾT MÌNH.<br><em>BAY HẾT CỠ.</em></h1>
+<p class="intro">Một đường đua trên mây. Hàng tá cú ngã.<br>Và một vị trí dẫn đầu đang chờ bạn.</p>
+<div class="course-tags" id="map-tags"></div>
+<div class="map-picker"><label for="map-select">CHỌN ĐƯỜNG ĐUA</label><select id="map-select"><option value="skyline">Skyline Circuit · 132 m</option><option value="sunset">Sunset Marathon · 300 m</option><option value="aurora">Aurora Expedition · 480 m</option></select></div>
+<div class="player-config"><label>CHỌN MÀU CỦA BẠN</label><div class="swatches"><button class="swatch selected" data-color="ffce45" style="--c:#ffce45" aria-label="Vàng nắng" aria-pressed="true"></button><button class="swatch" data-color="ff6b9d" style="--c:#ff6b9d" aria-label="Hồng kẹo" aria-pressed="false"></button><button class="swatch" data-color="7a65ef" style="--c:#7a65ef" aria-label="Tím" aria-pressed="false"></button><button class="swatch" data-color="32d6c0" style="--c:#32d6c0" aria-label="Xanh bạc hà" aria-pressed="false"></button></div></div>
+<button id="start" class="primary">VÀO ĐƯỜNG ĐUA <span>↗</span></button><div class="best">✧ KỶ LỤC CÁ NHÂN <strong id="best">Chưa có lượt đua</strong></div>
+</main>
+<aside id="course-card"><div class="card-top"><span>ĐƯỜNG ĐUA HÔM NAY</span><span class="pill" id="map-difficulty">KHỞI ĐỘNG</span></div><h2 id="map-title">Skyline Circuit</h2><p id="map-description">Đường đua kinh điển giữa những đám mây.</p><div class="stages"><div><i>01</i><span id="map-gates">Cổng chuyển động</span><b>● ● ○</b></div><div><i>02</i><span id="map-spinners">Chong chóng xoay</span><b>● ● ●</b></div><div><i>03</i><span id="map-special">Băng chuyền · Đệm bật</span></div><div><i>04</i><span id="map-gaps">Bước nhảy cuối</span><b>● ● ○</b></div></div></aside>
+<footer id="help"><span><kbd>W A S D</kbd> / <kbd>↑ ← ↓ →</kbd> Di chuyển</span><span><kbd>SPACE</kbd> Nhảy</span><span><kbd>ESC</kbd> Tạm dừng</span><small>NGÃ Ư? ĐỨNG LÊN VÀ CHẠY TIẾP.</small></footer>
+<section id="hud" hidden><div class="hud-panel"><small>VỊ TRÍ</small><strong><span id="rank">1</span><em> / 12</em></strong></div><div class="progress-panel"><div><span id="stage">01 / CỔNG CHUYỂN ĐỘNG</span><span id="progress-text">0%</span></div><div class="track"><i id="progress"></i></div></div><div class="hud-panel time"><small>THỜI GIAN CÒN LẠI</small><strong id="timer">02:00</strong></div></section>
+<div id="toast" role="status"></div><div id="countdown"></div>
+<div id="touch" hidden><div class="dpad"><button data-key="ArrowUp">↑</button><button data-key="ArrowLeft">←</button><button data-key="ArrowDown">↓</button><button data-key="ArrowRight">→</button></div><button id="jump">NHẢY ↗</button></div>
+<section id="modal" class="overlay" hidden><div class="modal-card"><div class="eyebrow" id="result-label">TẠM DỪNG</div><div class="medal" id="medal">Ⅱ</div><h2 id="result-title">Nghỉ lấy đà nhé.</h2><p id="result-desc">Đường đua vẫn chờ bạn ở phía trước.</p><div id="stats" hidden></div><button class="primary" id="resume">TIẾP TỤC ↗</button><button class="secondary" id="restart">ĐUA LẠI TỪ ĐẦU</button><button class="text-button" id="home">Về sảnh</button></div></section>
+<div id="error" hidden>Không thể khởi tạo đồ họa 3D. Hãy bật tăng tốc phần cứng và mở lại bằng Chrome hoặc Edge.</div>
+<script src="vendor/three.min.js"></script><script src="obstacles.js"></script><script src="game.js"></script>
+</body></html>
