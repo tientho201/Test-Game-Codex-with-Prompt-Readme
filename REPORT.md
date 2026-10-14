@@ -18,7 +18,7 @@ After two gameplay expansions, the game includes three courses spanning 132–48
 
 The prompts below are **English translations of the user's Vietnamese requests**, in chronological order. The [Vietnamese report](REPORT.vi.md) preserves the original wording. Exact message timestamps were not available in the data used for this report.
 
-### Prompt 1 — Build the initial product
+### Prompt — Build the initial product
 
 ```text
 Build a complete [Fall Guys-style 3D game / or an interactive financial dashboard] using plain HTML/TailwindCSS/JS (or Three.js running smoothly at 60fps).
@@ -29,30 +29,6 @@ Mandatory requirements:
 ```
 
 **Implementation:** selected the game option using HTML, plain CSS, JavaScript, and Three.js. Built the lobby, course, characters, bots, physics, and results screen. Bundled Three.js and its license in `vendor` for offline operation. A financial dashboard was not implemented.
-
-### Prompt 2 — Add longer courses
-
-```text
-Add other, longer maps.
-```
-
-**Implementation:** retained Skyline Circuit and added Sunset Marathon and Aurora Expedition, with a lobby selector. HUD information, progress, time limits, checkpoints, finish conditions, and records became course-specific. Switching courses disposes of the previous course's geometry to avoid accumulating scene objects.
-
-### Prompt 3 — Diversify obstacles
-
-```text
-Change the obstacles to different types to make the game more varied.
-```
-
-**Implementation:** added four mechanics and replaced selected existing obstacles instead of only increasing their number. Added collision responses, knockback, conveyor movement, and jump boosts. Updated bots to avoid hammer heads and choose lanes away from pushers. Introduced v2 record keys so results from different layouts are not compared directly. Existing record data was not deleted.
-
-### Prompt 4 — Create a detailed report
-
-```text
-Add a README about the prompts I gave you, costs, and time. Make it a detailed report, and link to it from the main README.
-```
-
-**Implementation:** created this Markdown report, linked it from the main README, and included it in the updated source ZIP.
 
 ### Documentation language update
 
@@ -72,39 +48,39 @@ The subsequent request was to make English the primary version while keeping Vie
 
 ### Current course configuration
 
-| Course | Length | Limit | Islands / gaps | Gates | Rotating bars | Hammers | Pushers | Conveyors | Jump pads |
-| --- | ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Skyline Circuit | 132 m | 120 seconds | 4 / 3 | 2 | 1 | 1 | 1 | 1 | 1 |
-| Sunset Marathon | 300 m | 210 seconds | 6 / 5 | 2 | 2 | 3 | 3 | 2 | 2 |
-| Aurora Expedition | 480 m | 300 seconds | 10 / 9 | 1 | 5 | 5 | 5 | 4 | 3 |
+| Course            | Length |       Limit | Islands / gaps | Gates | Rotating bars | Hammers | Pushers | Conveyors | Jump pads |
+| ----------------- | -----: | ----------: | -------------- | ----: | ------------: | ------: | ------: | --------: | --------: |
+| Skyline Circuit   |  132 m | 120 seconds | 4 / 3          |     2 |             1 |       1 |       1 |         1 |         1 |
+| Sunset Marathon   |  300 m | 210 seconds | 6 / 5          |     2 |             2 |       3 |       3 |         2 |         2 |
+| Aurora Expedition |  480 m | 300 seconds | 10 / 9         |     1 |             5 |       5 |       5 |         4 |         3 |
 
 These figures describe the current source configuration. Each gap has a checkpoint on the following island.
 
 ### Mechanics
 
-| Mechanic | Behavior | How to pass |
-| --- | --- | --- |
-| Sliding gate | Moves sideways and blocks racers | Change lanes and time the opening |
-| Rotating bar | Sweeps low and knocks racers away | Jump or time the rotation |
-| Swinging hammer | Orange head knocks the character away | Dodge sideways or wait for the upswing |
-| Pusher | Extends from the course edge | Avoid its side or jump over it |
-| Conveyor | Moves grounded racers forward/backward | Adjust movement or jump off |
-| Jump pad | Launches a grounded character upward | Steer while airborne |
+| Mechanic        | Behavior                               | How to pass                            |
+| --------------- | -------------------------------------- | -------------------------------------- |
+| Sliding gate    | Moves sideways and blocks racers       | Change lanes and time the opening      |
+| Rotating bar    | Sweeps low and knocks racers away      | Jump or time the rotation              |
+| Swinging hammer | Orange head knocks the character away  | Dodge sideways or wait for the upswing |
+| Pusher          | Extends from the course edge           | Avoid its side or jump over it         |
+| Conveyor        | Moves grounded racers forward/backward | Adjust movement or jump off            |
+| Jump pad        | Launches a grounded character upward   | Steer while airborne                   |
 
 ## 4. Technology and source structure
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Interface structure, course selector, HUD, and dialogs |
-| `style.css` | Responsive layout and styling in plain CSS |
-| `game.js` | Three.js scene, courses, characters, bots, physics, loop, and states |
-| `obstacles.js` | Placement, geometry, animation, collision, and AI assistance |
-| `verify.cjs` | Headless logic checks using Node.js and bundled Three.js |
-| `vendor/three.min.js` | Local Three.js r160, without a CDN dependency during play |
-| `vendor/LICENSE.txt` | Three.js MIT license |
-| `preview.png` | Screenshot from the latest gameplay update |
-| `README.md` / `README.vi.md` | English / Vietnamese instructions |
-| `REPORT.md` / `REPORT.vi.md` | English / Vietnamese reports |
+| File                         | Purpose                                                              |
+| ---------------------------- | -------------------------------------------------------------------- |
+| `index.html`                 | Interface structure, course selector, HUD, and dialogs               |
+| `style.css`                  | Responsive layout and styling in plain CSS                           |
+| `game.js`                    | Three.js scene, courses, characters, bots, physics, loop, and states |
+| `obstacles.js`               | Placement, geometry, animation, collision, and AI assistance         |
+| `verify.cjs`                 | Headless logic checks using Node.js and bundled Three.js             |
+| `vendor/three.min.js`        | Local Three.js r160, without a CDN dependency during play            |
+| `vendor/LICENSE.txt`         | Three.js MIT license                                                 |
+| `preview.png`                | Screenshot from the latest gameplay update                           |
+| `README.md` / `README.vi.md` | English / Vietnamese instructions                                    |
+| `REPORT.md` / `REPORT.vi.md` | English / Vietnamese reports                                         |
 
 Physics uses a fixed 1/120-second step. Rendering uses requestAnimationFrame, with pixel ratio capped at 1.6. Graphics use geometry and colors generated in code, without Fall Guys images or models. Playing requires no backend, database, npm, or build step. Node.js is only needed for checks; Python is optional for a development HTTP server.
 
@@ -112,16 +88,16 @@ Physics uses a fixed 1/120-second step. Rendering uses requestAnimationFrame, wi
 
 ### Evidence-backed milestones
 
-| October 14, 2026, UTC+7 | Work / evidence |
-| --- | --- |
-| 23:01:19 | `index.html` creation time from file metadata |
-| 23:03:58 | `game.js` creation time from file metadata |
-| Around 23:06 | Initial checks and packaging; tool logs recorded ZIP creation |
-| Around 23:12 | Browser inspection of course selection and Aurora; HTTP log recorded loading at 23:12:52 |
-| 23:17:07–23:17:16 | Created `obstacles.js` and updated game/check files |
-| Around 23:18 | Inspected the interface with new mechanics; completed logic checks |
-| 23:19:03 | Gameplay ZIP timestamp before adding the report, read from file metadata |
-| Around 23:22 onward | Began preparing the report requested in prompt 4 |
+| October 14, 2026, UTC+7 | Work / evidence                                                                          |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| 23:01:19                | `index.html` creation time from file metadata                                            |
+| 23:03:58                | `game.js` creation time from file metadata                                               |
+| Around 23:06            | Initial checks and packaging; tool logs recorded ZIP creation                            |
+| Around 23:12            | Browser inspection of course selection and Aurora; HTTP log recorded loading at 23:12:52 |
+| 23:17:07–23:17:16       | Created `obstacles.js` and updated game/check files                                      |
+| Around 23:18            | Inspected the interface with new mechanics; completed logic checks                       |
+| 23:19:03                | Gameplay ZIP timestamp before adding the report, read from file metadata                 |
+| Around 23:22 onward     | Began preparing the report requested in prompt 4                                         |
 
 **Observed elapsed time from HTML creation to the latest gameplay package: 17 minutes 44 seconds** (23:01:19 → 23:19:03).
 
@@ -133,14 +109,14 @@ There is insufficient data to allocate exact time to each prompt or feature. App
 
 ### What can be confirmed
 
-| Item | Status in this project |
-| --- | --- |
-| Three.js | Bundled MIT version; no library purchase transaction |
-| Commercial images, models, audio | None purchased; visuals generated in code and audio synthesized |
-| Hosting, domain, backend | None deployed or purchased; the product runs locally |
-| APIs called during play | No paid API integration; game runs offline |
-| Codex/AI for code and documentation | No invoice, subscription allocation, token counts, or actual session rates available |
-| Computer, electricity, Internet, user time | Not measured or converted into monetary costs |
+| Item                                       | Status in this project                                                               |
+| ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| Three.js                                   | Bundled MIT version; no library purchase transaction                                 |
+| Commercial images, models, audio           | None purchased; visuals generated in code and audio synthesized                      |
+| Hosting, domain, backend                   | None deployed or purchased; the product runs locally                                 |
+| APIs called during play                    | No paid API integration; game runs offline                                           |
+| Codex/AI for code and documentation        | No invoice, subscription allocation, token counts, or actual session rates available |
+| Computer, electricity, Internet, user time | Not measured or converted into monetary costs                                        |
 
 **Total development cost in VND or USD cannot be determined from the available data.** The absence of hosting or asset purchases does not mean the entire project was free. AI subscription or usage charges may belong to the user's account, but the conversation does not establish their allocation to this project.
 

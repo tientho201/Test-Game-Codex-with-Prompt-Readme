@@ -18,7 +18,7 @@ Sau hai lần mở rộng gameplay, game có ba map dài 132–480 mét và sáu
 
 Các đoạn dưới đây giữ nguyên nội dung yêu cầu; thứ tự thể hiện quá trình phát triển. Không có timestamp chính xác của từng tin nhắn trong dữ liệu dùng để lập báo cáo.
 
-### Prompt 1 — Tạo sản phẩm ban đầu
+### Prompt — Tạo sản phẩm ban đầu
 
 ```text
 Hãy xây dựng một [trò chơi thể loại Fall Guys 3D / hoặc một trang dashboard tài chính tương tác] hoàn chỉnh bằng HTML/TailwindCSS/JS thuần (hoặc Three.js chạy mượt 60fps).
@@ -29,30 +29,6 @@ Yêu cầu bắt buộc:
 ```
 
 **Cách triển khai:** chọn game 3D; dùng HTML, CSS thuần, JavaScript và Three.js. Dựng sảnh, đường đua, nhân vật, bot, vật lý và giao diện kết quả. Tải Three.js kèm giấy phép vào thư mục `vendor` để sản phẩm chạy offline. Không triển khai dashboard tài chính.
-
-### Prompt 2 — Mở rộng map
-
-```text
-Thêm các map khác dài ra
-```
-
-**Cách triển khai:** giữ Skyline Circuit, thêm Sunset Marathon và Aurora Expedition; tạo bộ chọn map ở sảnh. Thông tin HUD, tiến độ, thời gian, điểm hồi sinh, điều kiện về đích và kỷ lục được điều chỉnh theo map. Khi đổi map, giải phóng hình học của map cũ để tránh tích lũy đối tượng trong cảnh.
-
-### Prompt 3 — Đa dạng hóa chướng ngại vật
-
-```text
-thay đổi các chướng ngại vật khác nhau làm cho game đa dạng
-```
-
-**Cách triển khai:** thêm bốn cơ chế mới và thay thế một phần chướng ngại vật cũ tại các vị trí được chọn, thay vì chỉ tăng số lượng. Bổ sung phản ứng va chạm, lực đẩy, lực kéo và bật nhảy; điều chỉnh bot để né đầu búa và chọn làn tránh khối đẩy. Dùng khóa lưu kỷ lục v2 để không so sánh trực tiếp thành tích trên hai bố trí đường đua khác nhau. Dữ liệu kỷ lục cũ không bị xóa.
-
-### Prompt 4 — Lập báo cáo
-
-```text
-Ghi thêm Readme nói về prompt tôi đưa bạn , chi phí , thời gian , tạo thành report chi tiết vào trong ghi me , và readme chính có link trỏ về readme này
-```
-
-**Cách triển khai:** tạo báo cáo Markdown này, liên kết từ README chính và đưa tài liệu vào gói mã nguồn ZIP cập nhật.
 
 ### Cập nhật ngôn ngữ tài liệu
 
@@ -72,39 +48,39 @@ Theo yêu cầu tiếp theo, `README.md` và `REPORT.md` dùng tiếng Anh làm 
 
 ### Map ở phiên bản hiện tại
 
-| Map | Chiều dài | Giới hạn | Đảo / khe nhảy | Cổng | Thanh xoay | Búa | Khối đẩy | Băng chuyền | Đệm bật |
-| --- | ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Skyline Circuit | 132 m | 120 giây | 4 / 3 | 2 | 1 | 1 | 1 | 1 | 1 |
-| Sunset Marathon | 300 m | 210 giây | 6 / 5 | 2 | 2 | 3 | 3 | 2 | 2 |
-| Aurora Expedition | 480 m | 300 giây | 10 / 9 | 1 | 5 | 5 | 5 | 4 | 3 |
+| Map               | Chiều dài | Giới hạn | Đảo / khe nhảy | Cổng | Thanh xoay | Búa | Khối đẩy | Băng chuyền | Đệm bật |
+| ----------------- | --------: | -------: | -------------- | ---: | ---------: | --: | -------: | ----------: | ------: |
+| Skyline Circuit   |     132 m | 120 giây | 4 / 3          |    2 |          1 |   1 |        1 |           1 |       1 |
+| Sunset Marathon   |     300 m | 210 giây | 6 / 5          |    2 |          2 |   3 |        3 |           2 |       2 |
+| Aurora Expedition |     480 m | 300 giây | 10 / 9         |    1 |          5 |   5 |        5 |           4 |       3 |
 
 Các con số mô tả cấu hình mã nguồn hiện tại. Mỗi khe nhảy có một điểm lưu ở đảo tiếp theo.
 
 ### Tác động của từng cơ chế
 
-| Cơ chế | Hành vi | Cách vượt qua |
-| --- | --- | --- |
-| Cổng trượt | Di chuyển ngang và chặn người chơi | Đổi làn, canh khoảng trống |
-| Thanh xoay | Quét ngang ở độ cao thấp, hất người chạm vào | Nhảy hoặc canh nhịp |
-| Búa đung đưa | Đầu búa màu cam đánh bật nhân vật | Né sang bên hoặc chờ búa nâng lên |
-| Khối đẩy | Thò ra, thu vào từ mép sân | Tránh phía khối đẩy hoặc nhảy qua |
-| Băng chuyền | Kéo người đang đứng trên sàn tiến/lùi | Điều chỉnh hướng hoặc nhảy thoát |
-| Đệm bật | Tự bật cao khi nhân vật chạm trên mặt sàn | Điều khiển hướng khi đang bay |
+| Cơ chế       | Hành vi                                      | Cách vượt qua                     |
+| ------------ | -------------------------------------------- | --------------------------------- |
+| Cổng trượt   | Di chuyển ngang và chặn người chơi           | Đổi làn, canh khoảng trống        |
+| Thanh xoay   | Quét ngang ở độ cao thấp, hất người chạm vào | Nhảy hoặc canh nhịp               |
+| Búa đung đưa | Đầu búa màu cam đánh bật nhân vật            | Né sang bên hoặc chờ búa nâng lên |
+| Khối đẩy     | Thò ra, thu vào từ mép sân                   | Tránh phía khối đẩy hoặc nhảy qua |
+| Băng chuyền  | Kéo người đang đứng trên sàn tiến/lùi        | Điều chỉnh hướng hoặc nhảy thoát  |
+| Đệm bật      | Tự bật cao khi nhân vật chạm trên mặt sàn    | Điều khiển hướng khi đang bay     |
 
 ## 4. Công nghệ và cấu trúc mã nguồn
 
-| Tệp | Vai trò |
-| --- | --- |
-| `index.html` | Cấu trúc giao diện, bộ chọn map, HUD, hộp thoại |
-| `style.css` | Bố cục responsive và phong cách hình ảnh bằng CSS thuần |
-| `game.js` | Cảnh Three.js, map, nhân vật, bot, vật lý, vòng lặp và trạng thái game |
-| `obstacles.js` | Bố trí, hình học, hoạt ảnh, va chạm và hỗ trợ AI cho cơ chế mới |
-| `verify.cjs` | Kiểm thử logic headless bằng Node.js và Three.js đi kèm |
-| `vendor/three.min.js` | Three.js r160 lưu tại máy, không phụ thuộc CDN lúc chơi |
-| `vendor/LICENSE.txt` | Giấy phép MIT của Three.js |
-| `preview.png` | Ảnh chụp giao diện ở lần cập nhật gameplay gần nhất |
-| `README.md` / `README.vi.md` | Hướng dẫn chạy và chơi |
-| `REPORT.md` / `REPORT.vi.md` | Báo cáo tiếng Anh / tiếng Việt |
+| Tệp                          | Vai trò                                                                |
+| ---------------------------- | ---------------------------------------------------------------------- |
+| `index.html`                 | Cấu trúc giao diện, bộ chọn map, HUD, hộp thoại                        |
+| `style.css`                  | Bố cục responsive và phong cách hình ảnh bằng CSS thuần                |
+| `game.js`                    | Cảnh Three.js, map, nhân vật, bot, vật lý, vòng lặp và trạng thái game |
+| `obstacles.js`               | Bố trí, hình học, hoạt ảnh, va chạm và hỗ trợ AI cho cơ chế mới        |
+| `verify.cjs`                 | Kiểm thử logic headless bằng Node.js và Three.js đi kèm                |
+| `vendor/three.min.js`        | Three.js r160 lưu tại máy, không phụ thuộc CDN lúc chơi                |
+| `vendor/LICENSE.txt`         | Giấy phép MIT của Three.js                                             |
+| `preview.png`                | Ảnh chụp giao diện ở lần cập nhật gameplay gần nhất                    |
+| `README.md` / `README.vi.md` | Hướng dẫn chạy và chơi                                                 |
+| `REPORT.md` / `REPORT.vi.md` | Báo cáo tiếng Anh / tiếng Việt                                         |
 
 Vật lý chạy bước cố định 1/120 giây. Khung hình dùng requestAnimationFrame; pixel ratio giới hạn ở 1.6. Đồ họa được dựng bằng hình học và màu sắc trong mã, không dùng bộ ảnh hoặc model Fall Guys. Game không cần backend, cơ sở dữ liệu, npm hay công đoạn build để chơi. Node.js chỉ cần khi muốn chạy bộ kiểm thử; Python là tùy chọn để mở máy chủ HTTP khi phát triển.
 
@@ -112,16 +88,16 @@ Vật lý chạy bước cố định 1/120 giây. Khung hình dùng requestAnim
 
 ### Các mốc có bằng chứng
 
-| Mốc ngày 14/10/2026, UTC+7 | Công việc / bằng chứng |
-| --- | --- |
-| 23:01:19 | Thời điểm tạo `index.html` theo metadata tệp |
-| 23:03:58 | Thời điểm tạo `game.js` theo metadata tệp |
-| Khoảng 23:06 | Kiểm thử và đóng gói bản đầu; log công cụ ghi nhận ZIP đã tạo |
-| Khoảng 23:12 | Kiểm tra giao diện chọn map và Aurora 480 m trên trình duyệt; log HTTP ghi nhận tải trang lúc 23:12:52 |
-| 23:17:07–23:17:16 | Tạo `obstacles.js` và cập nhật các tệp game/kiểm thử |
-| Khoảng 23:18 | Kiểm tra giao diện có búa và các cơ chế mới; hoàn thành kiểm thử logic |
-| 23:19:03 | Mốc ZIP gameplay trước khi bổ sung báo cáo, theo metadata tệp được đọc lúc lập báo cáo |
-| Khoảng 23:22 trở đi | Bắt đầu tổng hợp tài liệu báo cáo theo prompt 4 |
+| Mốc ngày 14/10/2026, UTC+7 | Công việc / bằng chứng                                                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 23:01:19                   | Thời điểm tạo `index.html` theo metadata tệp                                                           |
+| 23:03:58                   | Thời điểm tạo `game.js` theo metadata tệp                                                              |
+| Khoảng 23:06               | Kiểm thử và đóng gói bản đầu; log công cụ ghi nhận ZIP đã tạo                                          |
+| Khoảng 23:12               | Kiểm tra giao diện chọn map và Aurora 480 m trên trình duyệt; log HTTP ghi nhận tải trang lúc 23:12:52 |
+| 23:17:07–23:17:16          | Tạo `obstacles.js` và cập nhật các tệp game/kiểm thử                                                   |
+| Khoảng 23:18               | Kiểm tra giao diện có búa và các cơ chế mới; hoàn thành kiểm thử logic                                 |
+| 23:19:03                   | Mốc ZIP gameplay trước khi bổ sung báo cáo, theo metadata tệp được đọc lúc lập báo cáo                 |
+| Khoảng 23:22 trở đi        | Bắt đầu tổng hợp tài liệu báo cáo theo prompt 4                                                        |
 
 **Khoảng thời gian quan sát được từ lúc tạo HTML đến gói gameplay gần nhất: 17 phút 44 giây** (23:01:19 → 23:19:03).
 
@@ -133,14 +109,14 @@ Không có dữ liệu đủ để phân tách chính xác thời gian cho từn
 
 ### Những gì có thể xác nhận
 
-| Hạng mục | Trạng thái trong dự án này |
-| --- | --- |
-| Thư viện Three.js | Bản MIT lưu kèm; không có giao dịch mua thư viện trong quá trình thực hiện |
-| Ảnh, model 3D, âm thanh thương mại | Không mua; hình ảnh dựng bằng mã, âm thanh tổng hợp |
-| Hosting, tên miền, backend | Không triển khai hoặc mua; sản phẩm bàn giao chạy cục bộ |
-| API được game gọi khi người dùng chơi | Không tích hợp API trả phí; game chạy offline |
-| Codex/AI dùng để tạo mã và tài liệu | Chưa có số liệu hóa đơn, gói sử dụng, token hay đơn giá thực tế của phiên này |
-| Máy tính, điện, Internet, thời gian người dùng | Chưa đo và chưa quy đổi thành tiền |
+| Hạng mục                                       | Trạng thái trong dự án này                                                    |
+| ---------------------------------------------- | ----------------------------------------------------------------------------- |
+| Thư viện Three.js                              | Bản MIT lưu kèm; không có giao dịch mua thư viện trong quá trình thực hiện    |
+| Ảnh, model 3D, âm thanh thương mại             | Không mua; hình ảnh dựng bằng mã, âm thanh tổng hợp                           |
+| Hosting, tên miền, backend                     | Không triển khai hoặc mua; sản phẩm bàn giao chạy cục bộ                      |
+| API được game gọi khi người dùng chơi          | Không tích hợp API trả phí; game chạy offline                                 |
+| Codex/AI dùng để tạo mã và tài liệu            | Chưa có số liệu hóa đơn, gói sử dụng, token hay đơn giá thực tế của phiên này |
+| Máy tính, điện, Internet, thời gian người dùng | Chưa đo và chưa quy đổi thành tiền                                            |
 
 **Không xác định được tổng chi phí phát triển bằng VNĐ hoặc USD từ dữ liệu hiện có.** Không nên diễn giải việc không mua hosting/tài nguyên thành “toàn bộ dự án miễn phí”. Chi phí thuê bao hoặc sử dụng AI có thể thuộc tài khoản của người dùng, nhưng cuộc trò chuyện không cung cấp cách phân bổ chi phí đó cho dự án này.
 
