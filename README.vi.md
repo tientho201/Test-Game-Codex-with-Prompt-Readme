@@ -2,6 +2,8 @@
 
 [English](README.md) | **Tiếng Việt**
 
+Được tạo bằng **GPT 6-Astra** với mức suy luận **medium**.
+
 ## Báo cáo phát triển
 
 Xem [báo cáo chi tiết: prompt, quá trình thực hiện, thời gian, chi phí và kiểm thử](REPORT.vi.md). Báo cáo phân biệt số liệu đã xác nhận với các thông tin chưa đo hoặc chưa có hóa đơn.

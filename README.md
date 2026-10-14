@@ -2,6 +2,8 @@
 
 **English** | [Tiếng Việt](README.vi.md)
 
+Created with **GPT 6-Astra** using **medium reasoning**.
+
 ## Development report
 
 Read the [detailed development report](REPORT.md) for the user prompts, implementation history, timeline, costs, and testing. A [Vietnamese report](REPORT.vi.md) is also available. The report distinguishes verified results from unmeasured performance and unavailable billing data.
